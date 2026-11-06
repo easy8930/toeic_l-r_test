@@ -1,1 +1,19 @@
-{"name":"listening-room","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"vite --host 0.0.0.0","build":"vite build","preview":"vite preview --host 0.0.0.0","test":"node --test tests/*.test.js"},"dependencies":{"fflate":"0.8.2","vite":"6.4.1"}}
+{
+  "name": "listening-room",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/*.test.js",
+    "bundle-audio": "node scripts/bundle-audio.mjs",
+    "predev": "npm run bundle-audio",
+    "prebuild": "npm run bundle-audio"
+  },
+  "dependencies": {
+    "fflate": "0.8.2",
+    "vite": "6.4.1"
+  }
+}

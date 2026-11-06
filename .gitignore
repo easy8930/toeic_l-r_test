@@ -1,2 +1,5 @@
 node_modules/
 dist/
+audio-source/*
+!audio-source/README.txt
+public/audio/
