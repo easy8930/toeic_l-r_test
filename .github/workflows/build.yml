@@ -1,0 +1,49 @@
+name: Build Listening Room
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source and textbook audio
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Run unit tests
+        run: npm test
+      - name: Build app and bundled audio
+        run: npm run build
+      - name: Report bundled audio
+        run: |
+          node --input-type=module <<'JS'
+          import {existsSync, readFileSync, appendFileSync} from 'node:fs';
+          const file = 'dist/audio/manifest.json';
+          const count = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')).tracks.length : 0;
+          const summary = `## Build result\n\nApp built successfully. Bundled audio tracks: **${count}**.\n\nDownload **listening-room-dist** below to test. This workflow does not deploy a website.\n`;
+          appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
+          if (!count) console.log('::warning::No textbook audio is committed in audio-source. The app builds, but audio cannot play until the administrator adds files and rebuilds.');
+          JS
+      - name: Upload test build
+        uses: actions/upload-artifact@v4
+        with:
+          name: listening-room-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7

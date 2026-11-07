@@ -79,3 +79,11 @@ Windowsの確認が出た場合は、信頼するプライベートネットワ�
 ## 検証
 
 `npm test` と `npm run build` を実行します。開発サーバーの起動中に `python3 scripts/bundled_smoke.py` を実行すると、生成WAVを使った取り込み不要の再生、連続再生、範囲終端、再読み込み後の回数、別ブラウザの記録の独立、検索、書き出し、ファイル選択・編集UIがないこと、320/390px表示を確認します。Python Playwrightと `/usr/bin/chromium` が必要です。既存の `public/audio/` がある場合は教材保護のため停止します。実教材を含めた試聴テストではありません。
+
+## GitHub上でビルドしてテストする
+
+GitHub Actionsの **Build Listening Room** が、`main` へのプッシュで自動的に `npm ci` → `npm test` → `npm run build` を実行します。GitHubの **Actions → Build Listening Room → Run workflow** から手動実行もできます。サイトの公開・デプロイは行いません。
+
+成功した実行の下部 **Artifacts → listening-room-dist** からビルド済みZIPをダウンロードできます（GitHubログインが必要な場合があります）。保存期間は7日です。実行サマリーに同梱トラック数が出ます。音声がGitHubの `audio-source/` に未配置なら0件となり、アプリ本体だけをビルドします。
+
+ローカルで成果物を試す場合、ZIPの中の `index.html`・`assets/`・存在する場合は `audio/` を、ソースコードのフォルダー内の `dist/` に展開します。そのフォルダーで `npm ci` と `npm run preview` を実行し、表示されるURLをブラウザで開きます。`index.html` のダブルクリックでは正常動作しません。ビルド成果物には登録済み教材音声も含まれるため、ダウンロード後の扱いも教材の利用条件に従ってください。
