@@ -1,3 +1,0 @@
-export function openAudioDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open('listening-room-audio',1);r.onupgradeneeded=()=>r.result.createObjectStore('files');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);r.onblocked=()=>reject(Error('他のタブを閉じて再読み込みしてください。'));});}
-export function putAudio(db,id,blob){return new Promise((resolve,reject)=>{const t=db.transaction('files','readwrite');t.objectStore('files').put(blob,id);t.oncomplete=resolve;t.onerror=()=>reject(t.error);t.onabort=()=>reject(t.error||Error('音声の保存を中断しました'));});}
-export function getAudio(db,id){return new Promise((resolve,reject)=>{const r=db.transaction('files').objectStore('files').get(id);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
