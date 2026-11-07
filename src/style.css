@@ -35,3 +35,56 @@
 }
 
 .unavailable-note{margin-top:13px!important;color:#776b50!important;font-size:10px!important;line-height:1.8}.group-card.unavailable{background:#f8f9f5}.group-card.unavailable .round-play{opacity:.55;cursor:not-allowed}
+
+/* Theme selection is independent of learning records and audio playback. */
+:root{color-scheme:light}
+.header-right{display:flex;align-items:center;gap:22px}
+.theme-picker{display:flex;align-items:center;gap:8px;color:#6a7f68;font-size:10px;letter-spacing:0;white-space:nowrap}
+.theme-picker select{min-height:44px;min-width:90px;font-size:12px;padding:8px 12px}
+:root[data-theme=dark]{color-scheme:dark;background:#101a15;color:#e2ebe0}
+[data-theme=dark] aside,[data-theme=dark] header,[data-theme=dark] #player{background:#14221b;border-color:#34483a}
+[data-theme=dark] .brand,[data-theme=dark] h1,[data-theme=dark] h2,[data-theme=dark] h3{color:#e3eddd}
+[data-theme=dark] .brand>svg,[data-theme=dark] .brand small,[data-theme=dark] .nav-label,[data-theme=dark] .sidebar-note,[data-theme=dark] .sidebar-note p,[data-theme=dark] header,[data-theme=dark] .header-status{color:#b1c4aa}
+[data-theme=dark] nav button{color:#bdcdb6}
+[data-theme=dark] nav button.active,[data-theme=dark] nav button:hover{background:#294131;color:#e0edd5}
+[data-theme=dark] .nav-count{background:#3a513d;color:#d9e7cf}
+[data-theme=dark] .sidebar-note{border-color:#34483a}
+[data-theme=dark] .eyebrow,[data-theme=dark] .muted,[data-theme=dark] .footnote,[data-theme=dark] .text-button,[data-theme=dark] .section-head h2>span{color:#afc2a5}
+[data-theme=dark] .hero,[data-theme=dark] .range-panel{background:#203727;border-color:#3a5139}
+[data-theme=dark] .hero h2{color:#e7f0dc}
+[data-theme=dark] .hero p,[data-theme=dark] .hero-tag,[data-theme=dark] .range-panel p{color:#bfd0b0}
+[data-theme=dark] .art-circle{border-color:#41583b;box-shadow:0 0 0 27px #2a412766,0 0 0 28px #3a513a}
+[data-theme=dark] .art-disc{background:#30492e;border-color:#4e6543}
+[data-theme=dark] .art-disc svg,[data-theme=dark] .art-label{color:#c2d4ad}
+[data-theme=dark] .sound-waves i{background:#8aab70}
+[data-theme=dark] .stats article,[data-theme=dark] .group-card,[data-theme=dark] .panel,[data-theme=dark] .track-table,[data-theme=dark] .empty{background:#192a1f;border-color:#3b503e}
+[data-theme=dark] .stats article>span,[data-theme=dark] .stats article>span svg,[data-theme=dark] .stats small,[data-theme=dark] .stats p{color:#b4c5a8}
+[data-theme=dark] .progress-line,[data-theme=dark] .bar{background:#354b32}
+[data-theme=dark] .progress-line i{background:#a1bd8a}
+[data-theme=dark] .mini-icon,[data-theme=dark] .player-art,[data-theme=dark] .round-play{background:#2a422d;color:#c3d6b1;border-color:#516547}
+[data-theme=dark] .tone-1{background:#443f2b;color:#ddcea2}
+[data-theme=dark] .tone-2{background:#2b4140;color:#b6d2d0}
+[data-theme=dark] .group-card p,[data-theme=dark] .group-badge,[data-theme=dark] .group-bottom small,[data-theme=dark] .group-bottom b span{color:#b4c5a7}
+[data-theme=dark] .group-card.unavailable{background:#1b271e}
+[data-theme=dark] .unavailable-note{color:#d4c397!important}
+[data-theme=dark] .button.light,[data-theme=dark] .search,[data-theme=dark] select,[data-theme=dark] form input{background:#203324;color:#deead6;border-color:#536848}
+[data-theme=dark] .button.light:hover{background:#304730}
+[data-theme=dark] .button.primary,[data-theme=dark] .player-controls .main-play,[data-theme=dark] .now-playing .track-play{background:#b4d49d;color:#142416;border-color:#b4d49d}
+[data-theme=dark] .button.primary:hover{background:#c9e4b6}
+[data-theme=dark] .search input{color:#e2edd9}
+[data-theme=dark] input::placeholder{color:#a8b99b}
+[data-theme=dark] label,[data-theme=dark] .theme-picker,[data-theme=dark] .range-panel form>span{color:#b7c9ab}
+[data-theme=dark] .table-heading{background:#273d2b;color:#c2d0b6}
+[data-theme=dark] .track-row{border-color:#344a36}
+[data-theme=dark] .track-row.now-playing{background:#2a432d}
+[data-theme=dark] .track-play{color:#c2d5ad;border-color:#5a704c}
+[data-theme=dark] .track-number,[data-theme=dark] .track-title small,[data-theme=dark] .listen-count,[data-theme=dark] .listen-count.heard{color:#b8cfa7}
+[data-theme=dark] .empty-icon{background:#2c452f;color:#c2d6af}
+[data-theme=dark] .empty p,[data-theme=dark] .empty h3{color:#b7c9a9}
+[data-theme=dark] .player-track small,[data-theme=dark] .queue-position,[data-theme=dark] .seek-row span,[data-theme=dark] .player-options button,[data-theme=dark] .player-controls button{color:#bbceab}
+[data-theme=dark] .player-options select,[data-theme=dark] .player-options button.enabled{background:#30492f;color:#d9e7cb}
+[data-theme=dark] .seek-row input{accent-color:#b8d69d}
+[data-theme=dark] #toast{background:#c0d9ac;color:#18251a}
+[data-theme=dark] #toast.error{background:#e5b499;color:#351c11}
+[data-theme=dark] button:focus-visible,[data-theme=dark] a:focus-visible,[data-theme=dark] input:focus-visible,[data-theme=dark] select:focus-visible{outline-color:#d1e9b9}
+@media(max-width:600px){.header-status{display:none}.header-right{gap:0}.theme-picker{gap:5px;font-size:9px}.theme-picker select{min-width:90px;padding:7px 9px;font-size:16px}header{height:58px}.header-dot{margin-right:5px}}
