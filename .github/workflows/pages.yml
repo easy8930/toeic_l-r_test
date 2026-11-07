@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
-      pages: read
+      pages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -29,6 +29,8 @@ jobs:
       - run: npm test
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Build for repository URL
         run: npm run build -- --base=/toeic_l-r_test/
       - uses: actions/upload-pages-artifact@v3
