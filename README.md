@@ -93,3 +93,25 @@ GitHub Actionsの **Build Listening Room** が、`main` へのプッシュで自
 `.github/workflows/pages.yml` が `main` へのプッシュでテスト・リポジトリURL向けビルド・GitHub Pagesへのデプロイを行います。公開先は `https://easy8930.github.io/toeic_l-r_test/`。GitHub PagesのSourceはGitHub Actionsを使用します。
 
 一般公開のため閲覧・再生にログインは不要です。音声ファイルもサイトから取得可能になります。管理者が `audio-source/` に追加した音声は次回のビルドで公開サイトに反映されます。再生回数は公開サイトを開いた各ブラウザ内だけに保存され、ローカル版の記録とは別になります。
+
+## 大きな音声ZIPをGitHub用に分ける（Windows / Python）
+
+追加ライブラリ不要です。Python 3をインストールし、アプリのフォルダーで実行します。
+
+```cmd
+py scripts\split_zip.py "C:\Users\ユーザー名\Downloads\7018001_audio01.zip"
+```
+
+元ZIPの隣に `7018001_audio01_github_parts` フォルダーを作り、各24MB以下の `7018001_audio01_part001.zip`、`part002.zip` などを生成します。audio02、audio03も同じように実行してください。
+
+生成したZIPをすべてGitHubの `audio-source/` へ追加してください。各ZIPは単独で展開できる通常のZIPで、アプリの音声準備スクリプトでもそのまま読み込めます。元の大きなZIPや、同じ音声を解凍したMP3と重ねて登録すると番号重複エラーになるため、生成したZIPだけを追加します。
+
+任意の保存先・小さめの上限も指定できます。
+
+```cmd
+py scripts\split_zip.py "C:\教材\7018001_audio01.zip" --output "C:\教材\分割済み01" --max-mb 20
+```
+
+元ZIPは変更しません。音声は再エンコードせず、ファイル単位で複数ZIPに詰め直します。出力はサイズの予測を確実にするため無圧縮ZIPを使い、実サイズが上限以下であることとCRCを確認します。既存の出力先は上書きせず停止します。1つの音声ファイルだけで上限を超える場合や暗号化ZIPでは、理由を表示して停止します。途中のエラーでは、この実行で作った不完全な出力を削除します。
+
+テスト：`python3 -m unittest discover -s tests -p "test_*.py"`（Windowsでは `python3` を `py` に置き換え）。全ファイルの内容・日本語ファイル名の保持、サイズ上限、既存出力保護、大きすぎる単一ファイル、不正ZIPを確認します。

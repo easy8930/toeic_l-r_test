@@ -27,6 +27,8 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm test
+      - name: Test ZIP splitting utility
+        run: python3 -m unittest discover -s tests -p "test_*.py"
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

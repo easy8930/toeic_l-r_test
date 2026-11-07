@@ -28,6 +28,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Run unit tests
         run: npm test
+      - name: Test ZIP splitting utility
+        run: python3 -m unittest discover -s tests -p "test_*.py"
       - name: Build app and bundled audio
         run: npm run build
       - name: Report bundled audio
