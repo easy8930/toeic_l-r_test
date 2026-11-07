@@ -33,3 +33,5 @@
  #driver{height:100dvh;padding-bottom:calc(30px + env(safe-area-inset-bottom));overflow:auto}
  .driver-close{min-height:44px}.driver-buttons{gap:15px}
 }
+
+.unavailable-note{margin-top:13px!important;color:#776b50!important;font-size:10px!important;line-height:1.8}.group-card.unavailable{background:#f8f9f5}.group-card.unavailable .round-play{opacity:.55;cursor:not-allowed}

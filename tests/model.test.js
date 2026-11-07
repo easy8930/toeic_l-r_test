@@ -5,3 +5,12 @@ test('continuous playback stops at range end or repeats',()=>{assert.equal(nextI
 test('verified groups match provided PDF',()=>{assert.deepEqual(verifiedGroups.slice(0,3).map(g=>[g.start,g.end]),[[122,131],[132,136],[137,167]]);assert.ok(validRange(1,20));assert.ok(!validRange(20,1));assert.ok(!validRange(1.5,20));});
 
 test('reading subgroups follow individual PDF track headings',()=>assert.deepEqual(verifiedGroups.slice(3).map(g=>[g.start,g.end]),[[137,140],[141,147],[148,151],[152,167]]));
+
+test('partial 001-101 library always has a playable featured group',async()=>{
+ const {listeningGroups,featuredGroups}=await import('../src/model.js');
+ const tracks=Array.from({length:101},(_,i)=>({number:i+1,name:`${i+1}.mp3`}));
+ const all=listeningGroups(tracks)[0];assert.equal(all.id,'all-audio');assert.equal(all.start,1);assert.equal(all.end,101);assert.equal(selectRange(tracks,all.start,all.end).length,101);
+ assert.equal(featuredGroups(tracks)[0].id,'all-audio');
+ assert.equal(featuredGroups([{number:132,name:'132.mp3'}])[1].id,'part2');
+ assert.equal(listeningGroups([]).some(g=>g.id==='all-audio'),false);
+});
