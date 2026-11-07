@@ -28,7 +28,7 @@ with tempfile.TemporaryDirectory() as folder:
     page.goto(f'http://127.0.0.1:{server.server_port}/');page.locator('h1').wait_for()
     assert page.locator('html').get_attribute('data-theme')=='dark'
     before=page.evaluate("localStorage.getItem('listening-room-v1')")
-    colors={}
+    colors={};driver_colors={}
     for theme in ['light','dark']:
      page.locator('#theme-select').select_option(theme)
      assert page.locator('html').get_attribute('data-theme')==theme
@@ -37,12 +37,13 @@ with tempfile.TemporaryDirectory() as folder:
       page.locator(f'nav [data-view="{view}"]').click()
       assert page.locator('#theme-select').input_value()==theme
       assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,view,theme)
+     page.locator('#drive').click();assert page.locator('#driver').is_visible();driver_colors[theme]=page.locator('#driver').evaluate('(el)=>getComputedStyle(el).backgroundColor');page.locator('#close-driver').click()
      assert page.evaluate("localStorage.getItem('listening-room-v1')")==before
      page.reload();page.locator('h1').wait_for()
      assert page.locator('html').get_attribute('data-theme')==theme
      assert page.locator('#theme-select').input_value()==theme
      if width in [1440,390]:page.screenshot(path=f'/tmp/listening-theme-{width}-{theme}.png',full_page=True)
-    assert colors['light']!=colors['dark']
+    assert colors['light']!=colors['dark'];assert driver_colors['light']!=driver_colors['dark']
     # Saved selection must win even when the OS preference changes.
     page.locator('#theme-select').select_option('light');page.emulate_media(color_scheme='dark');page.reload();page.locator('h1').wait_for();assert page.locator('html').get_attribute('data-theme')=='light'
     assert page.evaluate('__playCalls')==0;assert not media,media;assert not errors,errors

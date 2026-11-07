@@ -88,3 +88,8 @@
 [data-theme=dark] #toast.error{background:#e5b499;color:#351c11}
 [data-theme=dark] button:focus-visible,[data-theme=dark] a:focus-visible,[data-theme=dark] input:focus-visible,[data-theme=dark] select:focus-visible{outline-color:#d1e9b9}
 @media(max-width:600px){.header-status{display:none}.header-right{gap:0}.theme-picker{gap:5px;font-size:9px}.theme-picker select{min-width:90px;padding:7px 9px;font-size:16px}header{height:58px}.header-dot{margin-right:5px}}
+[data-theme=light] #driver{background:#eef4e6;color:#28462f}
+[data-theme=light] #driver .eyebrow,[data-theme=light] #driver>p,[data-theme=light] .driver-count,[data-theme=light] .driver-close{color:#607955}
+[data-theme=light] .driver-buttons button{color:#375c35;border-color:#99b084;background:#f9fbf5}
+[data-theme=light] #driver-play{background:#315f49;color:#fff;border-color:#315f49}
+[data-theme=light] .driver-hint{color:#6a805f!important}
