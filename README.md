@@ -87,3 +87,9 @@ GitHub Actionsの **Build Listening Room** が、`main` へのプッシュで自
 成功した実行の下部 **Artifacts → listening-room-dist** からビルド済みZIPをダウンロードできます（GitHubログインが必要な場合があります）。保存期間は7日です。実行サマリーに同梱トラック数が出ます。音声がGitHubの `audio-source/` に未配置なら0件となり、アプリ本体だけをビルドします。
 
 ローカルで成果物を試す場合、ZIPの中の `index.html`・`assets/`・存在する場合は `audio/` を、ソースコードのフォルダー内の `dist/` に展開します。そのフォルダーで `npm ci` と `npm run preview` を実行し、表示されるURLをブラウザで開きます。`index.html` のダブルクリックでは正常動作しません。ビルド成果物には登録済み教材音声も含まれるため、ダウンロード後の扱いも教材の利用条件に従ってください。
+
+## GitHub Pagesでの公開
+
+`.github/workflows/pages.yml` が `main` へのプッシュでテスト・リポジトリURL向けビルド・GitHub Pagesへのデプロイを行います。公開先は `https://easy8930.github.io/toeic_l-r_test/`。GitHub PagesのSourceはGitHub Actionsを使用します。
+
+一般公開のため閲覧・再生にログインは不要です。音声ファイルもサイトから取得可能になります。管理者が `audio-source/` に追加した音声は次回のビルドで公開サイトに反映されます。再生回数は公開サイトを開いた各ブラウザ内だけに保存され、ローカル版の記録とは別になります。
